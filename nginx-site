@@ -2,15 +2,15 @@ server {
     listen 80;
     server_name myapp.com;
     root /var/www/myapp/public;
-    
+
     index index.html index.htm index.php;
-    
+
     charset utf-8;
 
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
     }
-    
+
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
@@ -24,7 +24,7 @@ server {
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_index index.php;
-	fastcgi_pass 127.0.0.1:9000;
+	    fastcgi_pass 127.0.0.1:9000;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_intercept_errors off;
