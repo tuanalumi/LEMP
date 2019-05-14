@@ -1,4 +1,4 @@
-This script is designed to install the following on a fresh install of Ubuntu Server 16.04
+This script is designed to install the following on a fresh install of Ubuntu Server 16+
 - Nginx
 - Php7.3
 - MySQL
