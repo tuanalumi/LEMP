@@ -7,6 +7,7 @@ echo "- Git, Curl & Composer"
 echo "- Node.JS, Gulp, Bower & Socket.io - optional"
 read -p "Continue with installation? (y/n)" CONTINUE
 if [ $CONTINUE = "y" ]; then
+	sudo apt-get -y update
 	sudo apt-get install -y zip unzip
 	echo "Note: Script assumes you have a file named nginx-site in script directory to be copied to /etc/nginx/sites-available"
 	read -p "Install Nginx? (y/n)" NGINX
