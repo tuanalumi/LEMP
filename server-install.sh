@@ -47,13 +47,15 @@ if [ $CONTINUE = "y" ]; then
 		sudo apt-get -y update
 		sudo apt install -y php7.3-fpm php7.3-cli php7.3-mbstring php7.3-mysql php7.3-xml php7.3-curl
 
-		echo 'Setting cgi.fix_pathinfo=1 to /etc/php/7.3/fpm/php.ini'
-		sudo sed -e -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g' /etc/php/7.3/fpm/php.ini
+		echo 'Setting cgi.fix_pathinfo=0 to /etc/php/7.3/fpm/php.ini'
+		sudo sed -n 's/;cgi\.fix_pathinfo=1/cgi.fix_pathinfo=0/p' /etc/php/7.3/fpm/php.ini
 
 		read -p "Would you like to modify the FPM php.ini file? (y/n)" INI
 		if [ $INI = "y" ]; then
 			sudo nano /etc/php/7.3/fpm/php.ini
 		fi
+
+		sudo sed -n 's/listen = \/run\/php\/php7\.3-fpm\.sock/listen = 127.0.0.1:9000/p' /etc/php/7.3/fpm/pool.d/www.conf
 
 		read -p "Would you like to modify the FPM www.conf file? e.g. change listen to 127.0.0.1:9000 (y/n)" INI
 		if [ $INI = "y" ]; then
